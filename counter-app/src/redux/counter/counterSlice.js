@@ -15,6 +15,7 @@ const counterSlice = createSlice({
     miktarArttir: (store, actions) => {
       // store.value ile state'in o an ki değerini alıyoruz ve actions.payload ile fonksiyona geçen parametreyi yakalıyoruz
       store.value += Number(actions.payload);
+      console.log(actions);
     }
   }
 });
