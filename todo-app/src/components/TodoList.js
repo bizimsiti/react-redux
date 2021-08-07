@@ -1,16 +1,23 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { toggle, deleteTodo } from "../redux/todos/todosSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  toggle,
+  deleteTodo,
+  selectFilteredTodos
+} from "../redux/todos/todosSlice";
 function TodoList() {
-  const items = useSelector((state) => state.todos.items);
-  const activeFilter = useSelector((state) => state.todos.activeFilter);
+  /*const items = useSelector((state) => state.todos.items);
+  -->selector kullanımı
+  const items = useSelector(selectTodos);
+  */
   const dispatch = useDispatch();
-  let filtered = items;
+  const filteredTodos = useSelector(selectFilteredTodos);
   const handleDelete = (id) => {
     if (window.confirm("Are you sure ?")) {
       dispatch(deleteTodo(id));
     }
   };
+  /* 
   if (activeFilter !== "all") {
     filtered = items.filter((item) =>
       activeFilter === "active"
@@ -18,10 +25,11 @@ function TodoList() {
         : item.completed === true
     );
   }
+  */
 
   return (
     <ul className="todo-list">
-      {filtered.map((item) => (
+      {filteredTodos.map((item) => (
         <li key={item.id} className={item.completed ? "completed" : ""}>
           <div className="view">
             <input
@@ -30,7 +38,7 @@ function TodoList() {
               checked={item.completed}
               onChange={() => dispatch(toggle(item.id))}
             />
-            <label>{item.title}</label>
+            <label>{item.todo}</label>
             <button
               className="destroy"
               onClick={() => handleDelete(item.id)}
