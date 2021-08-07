@@ -1,28 +1,52 @@
 import React from "react";
-
+import { useSelector, useDispatch } from "react-redux";
+import { changeActiveFilter, clearCompleted } from "../redux/todos/todosSlice";
 function ContentFooter() {
+  const todos = useSelector((state) => state.todos.items);
+  const activeFilter = useSelector((state) => state.todos.activeFilter);
+  const todosLeft = todos.filter((item) => !item.completed).length;
+  const dispatch = useDispatch();
   return (
     <footer className="footer">
       <span className="todo-count">
-        <strong>2 </strong>
-        items left
+        <strong>{todosLeft}</strong>
+        item{todosLeft > 1 && "s"} left
       </span>
 
       <ul className="filters">
         <li>
-          <a href="/" className="selected">
+          <button
+            href="/"
+            className={activeFilter === "all" ? "selected" : null}
+            onClick={() => dispatch(changeActiveFilter("all"))}
+          >
             All
-          </a>
+          </button>
         </li>
         <li>
-          <a href="/">Active</a>
+          <button
+            className={activeFilter === "active" ? "selected" : null}
+            onClick={() => dispatch(changeActiveFilter("active"))}
+          >
+            Active
+          </button>
         </li>
         <li>
-          <a href="/">Completed</a>
+          <button
+            className={activeFilter === "completed" ? "selected" : null}
+            onClick={() => dispatch(changeActiveFilter("completed"))}
+          >
+            Completed
+          </button>
         </li>
       </ul>
 
-      <button className="clear-completed">Clear completed</button>
+      <button
+        className="clear-completed"
+        onClick={() => dispatch(clearCompleted())}
+      >
+        Clear completed
+      </button>
     </footer>
   );
 }

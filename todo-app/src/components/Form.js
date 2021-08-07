@@ -9,7 +9,9 @@ function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addTodo({ id: nanoid(), title: todo, completed: false }));
+    if (todo !== "") {
+      dispatch(addTodo({ id: nanoid(), title: todo, completed: false }));
+    }
     setTodo("");
   };
   return (
