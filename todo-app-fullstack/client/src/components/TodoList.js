@@ -1,9 +1,10 @@
-import React from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   toggle,
   deleteTodo,
-  selectFilteredTodos
+  selectFilteredTodos,
+  getTodosAsync
 } from "../redux/todos/todosSlice";
 function TodoList() {
   /*const items = useSelector((state) => state.todos.items);
@@ -27,6 +28,9 @@ function TodoList() {
   }
   */
 
+  useEffect(() => {
+    dispatch(getTodosAsync());
+  }, [dispatch]);
   return (
     <ul className="todo-list">
       {filteredTodos.map((item) => (

@@ -15,27 +15,27 @@ app.use(json());
 let todos = [
   {
     id: nanoid(),
-    title: "todo 1",
+    todo: "todo 1",
     completed: true
   },
   {
     id: nanoid(),
-    title: "todo 2",
+    todo: "todo 2",
     completed: false
   },
   {
     id: nanoid(),
-    title: "todo 3",
+    todo: "todo 3",
     completed: true
   },
   {
     id: nanoid(),
-    title: "todo 4",
+    todo: "todo 4",
     completed: false
   },
   {
     id: nanoid(),
-    title: "todo 5",
+    todo: "todo 5",
     completed: true
   }
 ];
@@ -43,7 +43,7 @@ let todos = [
 app.get("/todos", (req, res) => res.send(todos));
 
 app.post("/todos", (req, res) => {
-  const todo = { title: req.body.title, id: nanoid(), completed: false };
+  const todo = { todo: req.body.todo, id: nanoid(), completed: false };
   todos.push(todo);
   return res.send(todo);
 });
