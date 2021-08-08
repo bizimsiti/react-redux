@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { selectFilteredTodos } from "../redux/todos/todosSlice";
 import {
-  toggle,
-  deleteTodo,
-  selectFilteredTodos,
-  getTodosAsync
-} from "../redux/todos/todosSlice";
+  getTodosAsync,
+  toggleTodoAsync,
+  deleteTodoAsync
+} from "../redux/todos/services";
 function TodoList() {
   /*const items = useSelector((state) => state.todos.items);
   -->selector kullanımı
@@ -13,9 +13,10 @@ function TodoList() {
   */
   const dispatch = useDispatch();
   const filteredTodos = useSelector(selectFilteredTodos);
-  const handleDelete = (id) => {
+
+  const handleDelete = async (id) => {
     if (window.confirm("Are you sure ?")) {
-      dispatch(deleteTodo(id));
+      await dispatch(deleteTodoAsync(id));
     }
   };
   /* 
@@ -27,6 +28,10 @@ function TodoList() {
     );
   }
   */
+
+  const handleToggle = async (id, completed) => {
+    await dispatch(toggleTodoAsync({ id, data: { completed } }));
+  };
 
   useEffect(() => {
     dispatch(getTodosAsync());
@@ -40,7 +45,7 @@ function TodoList() {
               className="toggle"
               type="checkbox"
               checked={item.completed}
-              onChange={() => dispatch(toggle(item.id))}
+              onChange={() => handleToggle(item.id, !item.completed)}
             />
             <label>{item.todo}</label>
             <button

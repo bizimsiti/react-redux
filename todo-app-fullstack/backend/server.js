@@ -64,7 +64,7 @@ app.delete("/todos/:id", (req, res) => {
   if (index > -1) {
     todos.splice(index, 1);
   }
-  res.send(todos);
+  return res.send(todos);
 });
 
 const PORT = 7000;
