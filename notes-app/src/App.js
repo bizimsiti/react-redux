@@ -5,7 +5,7 @@ import Notes from "./Compenents/Notes";
 function App() {
   return (
     <div className="container">
-      <h1>Notes App</h1>
+      <h1 className="app-name">Notes App</h1>
       <Search />
       <Form />
       <Notes />

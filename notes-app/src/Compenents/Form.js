@@ -1,47 +1,39 @@
 import { useState } from "react";
+import { nanoid } from "nanoid";
+import { useDispatch } from "react-redux";
+import { addNote } from "../redux/notes/notesSlice";
+
 function Form() {
   const [color, setColor] = useState("#512D6D");
+  const [inputText, setInputText] = useState("");
   const customRadioButton = [
     { value: "#512D6D" },
     { value: "#F8485E" },
     { value: "#BD4B4B" },
     { value: "#FFB740" }
   ];
+  const dispatch = useDispatch();
+
   const handleColor = (e) => {
     setColor(e.target.value);
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (inputText !== "") {
+      dispatch(addNote({ id: nanoid(5), note: inputText, color }));
+    }
+    setInputText("");
+  };
   return (
     <form className="form-container">
-      <input type="text" placeholder="Enter yout note here..." />
+      <input
+        type="text"
+        placeholder="Enter your note here..."
+        value={inputText}
+        onChange={(e) => setInputText(e.target.value)}
+      />
       <div className="controls-container">
         <div htmlFor="" className="radio-container">
-          {/* <label className="radio-container-wrapper">
-            <input
-              type="radio"
-              name="colors"
-              value="1234"
-              onChange={(e) => handleColor(e)}
-            />
-            <span className="custom-radio"></span>
-          </label>
-          <label className="radio-container-wrapper">
-            <input
-              type="radio"
-              name="colors"
-              value="12345"
-              onChange={(e) => handleColor(e)}
-            />
-            <span className="custom-radio"></span>
-          </label>
-          <label className="radio-container-wrapper">
-            <input
-              type="radio"
-              name="colors"
-              value="123456"
-              onChange={(e) => handleColor(e)}
-            />
-            <span className="custom-radio"></span>
-          </label> */}
           {customRadioButton.map((item) => (
             <label key={item.value} className="radio-container-wrapper">
               <input
@@ -58,7 +50,7 @@ function Form() {
             </label>
           ))}
         </div>
-        <button type="submit">Add</button>
+        <button onClick={(e) => handleSubmit(e)}>Add</button>
       </div>
     </form>
   );

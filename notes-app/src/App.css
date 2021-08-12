@@ -1,21 +1,26 @@
 * {
   box-sizing: border-box;
 }
+.app-name {
+  display: block;
+  display: flex;
+  justify-content: center;
+}
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   margin: 50px auto;
   padding: 20px 50px;
   width: 500px;
   background-color: #f1f1f1;
 }
 .search-container {
-  width: 200px;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
 }
 .search-container input {
-  width: 100%;
+  width: 200px;
   height: 30px;
   border: 1px solid #f1f1f1;
   border-radius: 15px;
@@ -27,6 +32,7 @@
 .form-container {
   width: 100%;
   height: 150px;
+  margin-bottom: 20px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -94,4 +100,22 @@
 .radio-container-wrapper input:checked ~ span::after {
   display: block;
   border-radius: 50%;
+}
+
+/* notes component */
+.notes-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.notes-container li {
+  display: flex;
+  width: 200px;
+  background-color: aquamarine;
+  margin: 10px 0;
+  padding: 10px;
+  color: #f1f1f1;
 }
