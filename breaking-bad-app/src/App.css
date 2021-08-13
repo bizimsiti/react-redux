@@ -78,3 +78,32 @@ ul {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+/* details page */
+.card-container {
+  display: flex;
+  flex-direction: row;
+  width: 1000px;
+  border: 2px solid #f4f4f4;
+}
+.card-body-img {
+  width: 250px;
+  height: 340px;
+}
+.card-body-img img {
+  width: 250px;
+  height: 100%;
+}
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 1;
+}
+.card-content span {
+  display: block;
+}
+.card-header-name {
+  font-size: 32px;
+}
