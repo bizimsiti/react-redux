@@ -6,6 +6,28 @@ ul {
   margin: 0;
   padding: 0;
 }
+.menu-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  padding: 20px;
+  background-color: #a03c78;
+}
+.menu-container > ul {
+  display: flex;
+  width: 20%;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.menu-list a {
+  color: #93d9a3;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+.menu-list a:hover {
+  color: #c2f784;
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -52,8 +74,6 @@ ul {
   bottom: 0;
   opacity: 0.5;
   cursor: pointer;
-}
-.characters-list-item:hover .characters-list-item-image {
 }
 .loading-container,
 .error-container {
@@ -106,4 +126,13 @@ ul {
 }
 .card-header-name {
   font-size: 32px;
+}
+
+/* quotes */
+
+.quote-item {
+  padding: 10px;
+}
+.quote-item strong {
+  margin: 0 20px;
 }
