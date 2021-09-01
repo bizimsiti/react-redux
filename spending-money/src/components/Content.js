@@ -5,8 +5,8 @@ function Content() {
   return (
     <div className="content-container">
       <div className="product-list">
-        {products.map((product) => (
-          <Card product={product} />
+        {products.map((product, i) => (
+          <Card key={i} product={product} />
         ))}
       </div>
     </div>

@@ -95,6 +95,11 @@ body {
 .sell-btn {
   background-color: #ff2626;
 }
+.sell-btn[disabled],
+.buy-btn[disabled] {
+  background-color: #f1f2f6;
+  color: #364547;
+}
 .buy-btn {
   background-color: #1eae98;
 }
