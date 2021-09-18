@@ -1,8 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-
+import CountUp from "react-countup";
 function Header() {
-  const totalMoney = useSelector((state) => state.spendMoney.remainingMoney);
+  const totalMoney = useSelector((state) => state.spendMoney.totalMoney);
+  const totalFee = useSelector((state) => state.spendMoney.totalFee);
   return (
     <>
       <div className="header-container">
@@ -11,7 +12,7 @@ function Header() {
         </div>
       </div>
       <div className="money">
-        <h1>₺{totalMoney}</h1>
+        <h1>${totalMoney - totalFee}</h1>
       </div>
     </>
   );

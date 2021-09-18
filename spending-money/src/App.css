@@ -123,13 +123,15 @@ body {
 }
 .cart-list {
   display: flex;
+  max-width: 500px;
   flex-direction: column;
 }
 .cart-item {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 30px;
 }
+
 .cart-wrapper {
   width: 400px;
   display: flex;

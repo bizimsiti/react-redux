@@ -1,7 +1,8 @@
 import React from "react";
-import products from "../constants/index";
 import Card from "./Card";
+import { useSelector } from "react-redux";
 function Content() {
+  const products = useSelector((state) => state.spendMoney.items);
   return (
     <div className="content-container">
       <div className="product-list">

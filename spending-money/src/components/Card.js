@@ -1,28 +1,15 @@
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+//import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  buyProduct,
-  sellProduct,
-  remainingMoney
+  multipleIncrementProduct,
+  incrementProduct,
+  decrementProduct
 } from "../redux/spendMoneySlice";
 
 function Card({ product }) {
   const totalMoney = useSelector((state) => state.spendMoney.totalMoney);
-  const [productCount, setProductCount] = useState(0);
+  const totalFee = useSelector((state) => state.spendMoney.totalFee);
   const dispatch = useDispatch();
-  const totalPrice = productCount * product.price;
-
-  const incrementProduct = () => {
-    setProductCount(productCount + 1);
-  };
-  const decrementProduct = () => {
-    if (productCount > 0) {
-      setProductCount(productCount - 1);
-    }
-  };
-  useEffect(() => {
-    dispatch(buyProduct(totalPrice));
-  }, [dispatch, totalPrice]);
   return (
     <div className="product-list-item-container">
       <img src={product.img} alt="" />
@@ -31,21 +18,29 @@ function Card({ product }) {
       <div className="item-controls">
         <button
           className="sell-btn"
-          onClick={() => decrementProduct()}
-          disabled={productCount === 0 ? true : false}
+          disabled={product.amount === 0 ? true : false}
+          onClick={() => dispatch(decrementProduct(product.id))}
         >
           Sell
         </button>
         <input
           min="0"
           type="number"
-          value={productCount}
-          onChange={(e) => setProductCount(Number(e.target.value))}
+          value={product.amount}
+          disabled={totalMoney - totalFee < totalFee ? true : false}
+          onChange={(e) =>
+            dispatch(
+              multipleIncrementProduct({
+                id: product.id,
+                value: Number(e.target.value)
+              })
+            )
+          }
         />
         <button
           className="buy-btn"
-          disabled={totalMoney < productCount * product.price ? true : false}
-          onClick={() => incrementProduct()}
+          onClick={() => dispatch(incrementProduct(product.id))}
+          disabled={totalMoney - totalFee < totalFee ? true : false}
         >
           Buy
         </button>
