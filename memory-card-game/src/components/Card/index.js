@@ -1,14 +1,31 @@
-import React from "react";
+import { useDispatch } from "react-redux";
+import { openCard } from "../../redux/cardSlice";
+function Card({ item }) {
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(openCard(item.id));
+  };
 
-function index() {
   return (
-    <div className="card">
+    <div
+      className={`card ${item.close ? "" : "opened"} ${
+        item.completed ? "matched" : ""
+      }`}
+      onClick={() => handleClick()}
+    >
       <div className="front">?</div>
       <div className="back">
-        {/* <img src={"https://raw.githubusercontent.com/samiheikki/javascript-guessing-game/master/static/logos/" + this.props.framework + ".png"} alt="" srcset="" /> */}
+        <img
+          alt={item.name}
+          src={
+            "https://raw.githubusercontent.com/samiheikki/javascript-guessing-game/master/static/logos/" +
+            item.name +
+            ".png"
+          }
+        />
       </div>
     </div>
   );
 }
 
-export default index;
+export default Card;

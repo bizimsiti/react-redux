@@ -4,6 +4,7 @@ import { contactSelector } from "../../redux/contactSlice";
 import Item from "./Item";
 function List() {
   const contacts = useSelector(contactSelector.selectAll);
+  console.log(contacts);
   return (
     <div className="items-container">
       <ul className="list-container">

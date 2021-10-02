@@ -7,24 +7,61 @@ body {
   margin: 20px auto;
   border-radius: 10px;
 }
+.navbar {
+  display: flex;
+  max-width: 1100px;
+  height: 50px;
+  background-color: #343434;
+  justify-content: space-between;
+  color: #f2f2f2;
+  align-items: center;
+  padding: 0 20px;
+}
 .playground {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  perspective: 1000px;
   margin-bottom: -15px;
 }
-.card {
-  width: 15%;
-  user-select: none;
-  height: 110px;
-  padding: 10px;
-  box-sizing: border-box;
-  text-align: center;
-  margin-bottom: 15px;
-  transition: 0.6s;
-  transform-style: preserve-3d;
+.modal {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
   position: relative;
+  top: 50%;
+  left: calc(50% - 250px);
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  padding: 10px 20px;
+}
+.modal-header {
+  padding: 20px;
+  color: #343434;
+  font-size: 32px;
+}
+.modal-btn button {
+  padding: 20px;
+  background-color: #ff2442;
+  border: 1px solid #ff2442;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #f2f2f2;
+  font-weight: bold;
+}
+.modal-btn button:hover {
+  color: #ff2442;
+  background-color: #f2f2f2;
+  border: 1px solid #ff2442;
 }
 .card {
   width: 15%;
@@ -48,6 +85,9 @@ body {
   border-radius: 10px;
   transition: 0.6s;
   background: #f4f5f7;
+}
+.card button {
+  position: absolute;
 }
 .card .front {
   font-size: 50px;

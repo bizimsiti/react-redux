@@ -1,23 +1,41 @@
-import React from "react";
 import Card from "../Card";
-function index() {
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { checkCard, startGame, initGame } from "../../redux/cardSlice";
+
+function Playground() {
+  const cards = useSelector((state) => state.cards.randomizedItems);
+  const score = useSelector((state) => state.cards.score);
+  const openedCards = useSelector((state) => state.cards.openedItems);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (openedCards.length === 2) {
+      setTimeout(() => {
+        dispatch(checkCard());
+      }, 500);
+    }
+  }, [dispatch, openedCards.length]);
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(initGame());
+    }, 5000);
+  }, [dispatch]);
   return (
     <div className="playground">
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      {score < 0 ? (
+        <div className="modal">
+          <div className="modal-container">
+            <div className="modal-header">Game Over :(</div>
+            <div className="modal-btn">
+              <button onClick={() => dispatch(startGame())}>Try Again</button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        cards.map((item) => <Card key={item.id} item={item} />)
+      )}
     </div>
   );
 }
 
-export default index;
+export default Playground;
