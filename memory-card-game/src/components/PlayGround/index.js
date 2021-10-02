@@ -8,21 +8,22 @@ function Playground() {
   const score = useSelector((state) => state.cards.score);
   const openedCards = useSelector((state) => state.cards.openedItems);
   const dispatch = useDispatch();
+  console.log(openedCards);
   useEffect(() => {
     if (openedCards.length === 2) {
       setTimeout(() => {
         dispatch(checkCard());
-      }, 500);
+      }, 3500);
     }
-  }, [dispatch, openedCards.length]);
+  }, [dispatch, openedCards]);
   useEffect(() => {
     setTimeout(() => {
       dispatch(initGame());
-    }, 5000);
-  }, [dispatch]);
+    }, 1000);
+  }, [dispatch, score]);
   return (
     <div className="playground">
-      {score < 0 ? (
+      {score <= 0 ? (
         <div className="modal">
           <div className="modal-container">
             <div className="modal-header">Game Over :(</div>

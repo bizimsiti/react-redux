@@ -21,13 +21,11 @@ const cardSlice = createSlice({
   },
   reducers: {
     openCard: (state, action) => {
-      if (state.openedItems.length < 2) {
-        const filteredCard = state.randomizedItems.find(
-          (item) => item.id === action.payload
-        );
-        state.openedItems.push(filteredCard);
-        filteredCard.close = false;
-      }
+      const filteredCard = state.randomizedItems.find(
+        (item) => item.id === action.payload
+      );
+      state.openedItems.push(filteredCard);
+      filteredCard.close = false;
     },
     checkCard: (state, action) => {
       if (
@@ -51,18 +49,18 @@ const cardSlice = createSlice({
           (item) => item.id === state.openedItems[1].id
         );
         firstFilteredCard.close = secondFilteredCard.close = true;
-        state.score -= 30;
+        if (state.openedItems[0].id !== state.openedItems[1].id) {
+          state.score -= 10;
+        }
         state.openedItems = [];
       }
     },
     initGame: (state) => {
-      state.randomizedItems.map((item) => {
-        item.close = true;
-      });
+      state.randomizedItems.map((item) => (item.close = true));
     },
     startGame: (state, action) => {
       state.randomizedItems = randomizeCards(cardData);
-      state.score = 100;
+      state.score = 30;
     }
   }
 });
