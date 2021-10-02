@@ -13,13 +13,13 @@ function Playground() {
     if (openedCards.length === 2) {
       setTimeout(() => {
         dispatch(checkCard());
-      }, 3500);
+      }, 500);
     }
   }, [dispatch, openedCards]);
   useEffect(() => {
     setTimeout(() => {
       dispatch(initGame());
-    }, 1000);
+    }, 5000);
   }, [dispatch, score]);
   return (
     <div className="playground">
