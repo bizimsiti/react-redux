@@ -9,6 +9,13 @@ function Playground() {
   const openedCards = useSelector((state) => state.cards.openedItems);
   const dispatch = useDispatch();
   console.log(openedCards);
+  const handleStart = () => {
+    console.log("start");
+    dispatch(startGame());
+    setTimeout(() => {
+      dispatch(initGame());
+    }, 5000);
+  };
   useEffect(() => {
     if (openedCards.length === 2) {
       setTimeout(() => {
@@ -17,10 +24,11 @@ function Playground() {
     }
   }, [dispatch, openedCards]);
   useEffect(() => {
+    console.log("initgame");
     setTimeout(() => {
       dispatch(initGame());
     }, 5000);
-  }, [dispatch, score]);
+  }, [dispatch]);
   return (
     <div className="playground">
       {score <= 0 ? (
@@ -28,7 +36,7 @@ function Playground() {
           <div className="modal-container">
             <div className="modal-header">Game Over :(</div>
             <div className="modal-btn">
-              <button onClick={() => dispatch(startGame())}>Try Again</button>
+              <button onClick={() => handleStart()}>Try Again</button>
             </div>
           </div>
         </div>

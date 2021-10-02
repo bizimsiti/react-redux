@@ -60,7 +60,7 @@ const cardSlice = createSlice({
     },
     startGame: (state, action) => {
       state.randomizedItems = randomizeCards(cardData);
-      state.score = 30;
+      state.score = 100;
     }
   }
 });
