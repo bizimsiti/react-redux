@@ -9,6 +9,9 @@ function App() {
         <span>SCORE: {score}</span>
       </div>
       <PlayGround />
+      <div className="footer">
+        <a href="https://github.com/bizimsiti">GİTHUB</a>
+      </div>
     </div>
   );
 }
