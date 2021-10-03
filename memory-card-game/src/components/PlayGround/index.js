@@ -8,9 +8,7 @@ function Playground() {
   const score = useSelector((state) => state.cards.score);
   const openedCards = useSelector((state) => state.cards.openedItems);
   const dispatch = useDispatch();
-  console.log(openedCards);
   const handleStart = () => {
-    console.log("start");
     dispatch(startGame());
     setTimeout(() => {
       dispatch(initGame());
@@ -24,7 +22,6 @@ function Playground() {
     }
   }, [dispatch, openedCards]);
   useEffect(() => {
-    console.log("initgame");
     setTimeout(() => {
       dispatch(initGame());
     }, 5000);
