@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 function App() {
   const score = useSelector((state) => state.cards.score);
   return (
-    <div>
+    <div className="container">
       <div className="navbar">
         <span>SCORE: {score}</span>
       </div>
